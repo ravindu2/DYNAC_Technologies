@@ -1,15 +1,18 @@
-import { createBrowserRouter } from "react-router-dom";
-import Home from './pages/Home';
-import MainPage from './pages/MainPage.tsx';
-import Dashboard from './pages/Dashboard';
-import MemberList from './pages/MemberList';
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import MainPage from "./pages/MainPage.tsx";
+import Dashboard from "./pages/Dashboard";
+import MemberList from "./pages/MemberList";
 import TrainerList from "./pages/TrainerList";
 import PlansClasses from "./pages/PlansClasses.tsx";
 
+// ProtectedRoute Component
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  const isAuthenticated = !!localStorage.getItem("token");
 
-
-const isAuthenticated = !!localStorage.getItem("token");
-
+  // Redirect to home if not authenticated
+  return isAuthenticated ? children : <Navigate to="/" />;
+};
 
 const routers = createBrowserRouter([
   {
@@ -19,8 +22,9 @@ const routers = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-     
+      <ProtectedRoute>
         <MainPage />
+      </ProtectedRoute>
     ),
     children: [
       {

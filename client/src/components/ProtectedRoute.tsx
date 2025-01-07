@@ -2,13 +2,13 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 interface ProtectedRouteProps {
-  element: React.ReactElement; // Ensure 'element' is a valid React component
+  children: React.ReactNode;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem("token");
 
-  return isAuthenticated ? element : <Navigate to="/" replace />;
+  return isAuthenticated ? <>{children}</> : <Navigate to="/dashboard" />;
 };
 
 export default ProtectedRoute;
