@@ -6,11 +6,9 @@ import MemberList from "./pages/MemberList";
 import TrainerList from "./pages/TrainerList";
 import PlansClasses from "./pages/PlansClasses.tsx";
 
-// ProtectedRoute Component
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const isAuthenticated = !!localStorage.getItem("token");
 
-  // Redirect to home if not authenticated
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  const isAuthenticated = !!localStorage.getItem("authToken");
   return isAuthenticated ? children : <Navigate to="/" />;
 };
 

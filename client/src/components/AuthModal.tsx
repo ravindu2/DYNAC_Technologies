@@ -52,8 +52,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, type }) => {
                     password: formData.password,
                 });
 
-                localStorage.setItem("token", "your-auth-token");
-
                 const { token } = response.data;
                 localStorage.setItem('authToken', token);
                 alert('Signin successful!');
