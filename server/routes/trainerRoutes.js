@@ -9,8 +9,8 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const router = express.Router();
 
 router.post('/',authMiddleware, addTrainer);
-router.get('/', getTrainers);
+router.get('/', authMiddleware,getTrainers);
 router.put('/:id', updateTrainer);
-router.delete('/:id', deleteTrainer);
+router.delete('/:id', authMiddleware,deleteTrainer);
 
 module.exports = router;

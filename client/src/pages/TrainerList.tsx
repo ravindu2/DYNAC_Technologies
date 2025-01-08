@@ -22,7 +22,7 @@ const TrainerList: React.FC = () => {
     try {
       const response = await axios.get('http://localhost:5000/trainers', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`, 
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`, 
         },
       });
       setTrainers(response.data); 
@@ -38,7 +38,7 @@ const TrainerList: React.FC = () => {
     try {
       await axios.put(`/api/trainers/${_id}`, updatedData, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
         },
       });
       fetchTrainers(); // Reload trainers after update
@@ -52,7 +52,7 @@ const TrainerList: React.FC = () => {
     try {
       await axios.delete(`http://localhost:5000/trainers/${_id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
         },
       });
       setTrainers((prev) => prev.filter((trainer) => trainer._id !== _id)); // Update the trainers list after deletion

@@ -21,7 +21,7 @@ const MemberList = () => {
     try {
       const response = await axios.get('http://localhost:5000/clients', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
         },
       });
       setMembers(response.data);
@@ -37,7 +37,7 @@ const MemberList = () => {
     try {
       await axios.put(`http://localhost:5000/clients/${_id}`, updatedData, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
         },
       });
       fetchTrainers(); // Refresh trainers after update
@@ -51,7 +51,7 @@ const MemberList = () => {
     try {
       await axios.delete(`http://localhost:5000/clients/${_id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
         },
       });
       setMembers((prev) => prev.filter((member) => member._id !== _id));
